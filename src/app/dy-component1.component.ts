@@ -24,4 +24,8 @@ export class DyComponent1Component implements WithKeepAlive {
   addCount() {
     this.count ++;
   }
+
+  constructor() {
+    console.log('DyComponent1Component');
+  }
 }

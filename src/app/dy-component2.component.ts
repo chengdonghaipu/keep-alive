@@ -14,5 +14,7 @@ import { CommonModule } from '@angular/common';
   ]
 })
 export class DyComponent2Component {
-
+  constructor() {
+    console.log('DyComponent2Component');
+  }
 }

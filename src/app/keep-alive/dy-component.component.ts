@@ -114,10 +114,20 @@ export class DyComponentComponent implements OnInit, OnDestroy, OnChanges {
 
     executeOnActivated(this.#currentViewRef);
 
-    this.#cacheView.push({
-      component: currentValue,
-      componentRef: this.#currentViewRef
+    Promise.resolve().then(() => {
+      const max = this.keepAlive.max;
+
+      if (this.#cacheView.length >= max) {
+        this.#cacheView.shift();
+      }
+
+      this.#cacheView.push(<DyView>{
+        component: currentValue,
+        componentRef: this.#currentViewRef
+      })
     })
+
+
   }
 
   isChange(previousValue: Type<any>, currentValue: Type<any>) {
