@@ -14,7 +14,8 @@ import { DyComponentComponent } from './dy-component.component';
     CommonModule
   ],
   exports: [
-    KeepAliveComponent
+    KeepAliveComponent,
+    DyComponentComponent
   ]
 })
 export class KeepAliveModule {
