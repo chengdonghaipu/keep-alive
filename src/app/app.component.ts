@@ -7,9 +7,7 @@ import {DyComponent3Component} from "./dy-component3.component";
   selector: 'app-root',
   styleUrls: ['./app.component.scss'],
   template: `
-    <app-keep-alive [max]="2">
-      <app-dy-component [is]="component"></app-dy-component>
-    </app-keep-alive>
+    <app-keep-alive [max]="2" [is]="component"></app-keep-alive>
 
     <button (click)="active(0)">激活组件1</button>
     <button (click)="active(1)">激活组件2</button>
