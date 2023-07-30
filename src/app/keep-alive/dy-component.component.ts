@@ -84,9 +84,15 @@ export class DyComponentComponent implements OnInit, OnDestroy, OnChanges {
 
     if (view) {
       // 已经渲染过了
-      executeOnActivated(view.componentRef);
-      this.viewContainerRef.insert(view.componentRef.hostView);
-      return
+      const keepAlive = view.componentRef.instance.keepAlive ?? true;
+
+      if (!keepAlive) {
+        this.#cacheView = this.#cacheView.filter(value => value.component !== currentValue)
+      } else {
+        executeOnActivated(view.componentRef);
+        this.viewContainerRef.insert(view.componentRef.hostView);
+        return
+      }
     }
     // 初次渲染
     const injector = Injector.create({
@@ -98,6 +104,13 @@ export class DyComponentComponent implements OnInit, OnDestroy, OnChanges {
       injector,
       index: this.viewContainerRef.length
     });
+
+    const keepAlive = this.#currentViewRef.instance.keepAlive ?? true;
+
+    if (!keepAlive) {
+      // 无需缓存!
+      return;
+    }
 
     executeOnActivated(this.#currentViewRef);
 

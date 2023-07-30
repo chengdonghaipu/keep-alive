@@ -6,8 +6,11 @@ export interface OnActivated {
 export interface OnDeactivated {
   onDeactivated(): void;
 }
+export interface WithKeepAlive {
+  keepAlive: boolean;
+}
 
-export interface DyComponent extends OnActivated, OnDeactivated{
+export interface DyComponent extends OnActivated, OnDeactivated, WithKeepAlive {
   [key: string]: any;
 }
 
