@@ -18,6 +18,3 @@ export type TypedSimpleChanges<T> = {
   [P in keyof T]?: SimpleChange;
 };
 
-export interface KeepAlive {
-  max: number;
-}
